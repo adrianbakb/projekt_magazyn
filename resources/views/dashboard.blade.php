@@ -42,12 +42,11 @@
             </div>
           </div>
         </div>
-      </div>
+       </div>
       </div>
           <i class="material-icons text-danger">send</i>
           <a href="{{ URL::to('message') }}">Wyślij zapytanie...</a>
-      </div>
-    </div>
+   </div>
 
 @endsection
 
