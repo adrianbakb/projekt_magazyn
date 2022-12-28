@@ -19,14 +19,14 @@ Route::get('/', function () {
 Auth::routes();
 //routes dla funkcji Produkty
 Route::group(['middleware' => 'auth'], function () {
-  Route::get('/product/edit/{id}','App\Http\Controllers\ProductController@edit');
-  Route::post('/product/edit/','App\Http\Controllers\ProductController@editStore');
-  Route::get('/product/create','App\Http\Controllers\ProductController@create');
-  Route::post('/product','App\Http\Controllers\ProductController@store');
-  Route::get('/product/', 'App\Http\Controllers\ProductController@index');
-  Route::get('/product/{id}', 'App\Http\Controllers\ProductController@show');
-  Route::get('/product/magazine/{id}', 'App\Http\Controllers\ProductController@listByMagazine');
-  Route::get('/product/delete/{id}', 'App\Http\Controllers\ProductController@delete');
+  Route::get('/product/edit/{id}','App\Http\Controllers\ProductController@edit');                 //formularz edycji rekordu
+  Route::post('/product/edit/','App\Http\Controllers\ProductController@editStore');               //zapisywanie edytowanych danych
+  Route::get('/product/create','App\Http\Controllers\ProductController@create');                  //formularz dodawania rekordu
+  Route::post('/product','App\Http\Controllers\ProductController@store');                         //zapisywanie dodanego rekordu
+  Route::get('/product/', 'App\Http\Controllers\ProductController@index');                        //dane z tabeli w formie listy
+  Route::get('/product/{id}', 'App\Http\Controllers\ProductController@show');                     //szczegóły wybranego rekordu
+  Route::get('/product/magazine/{id}', 'App\Http\Controllers\ProductController@listByMagazine');  //"id" magazynu dla danego produktu
+  Route::get('/product/delete/{id}', 'App\Http\Controllers\ProductController@delete');            //usuwanie rekordu
 });
 
 //routes dla funkcji Magazyny
@@ -46,7 +46,7 @@ Route::post('/login', 'App\Http\Controllers\Auth\LoginController@login')->name('
 Route::group(['middleware' => 'auth'], function () {
   Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 });
-
+//routes panel uzytkownika
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('/user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 	Route::get('/profile/edit', 'App\Http\Controllers\ProfileController@edit');

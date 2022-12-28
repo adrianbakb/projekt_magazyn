@@ -14,7 +14,7 @@ class MagazineController extends Controller
       $this->middleware('auth');
     }
 
-    public function index(MagazineRepository $magRepo){
+    public function index(MagazineRepository $magRepo){  //metoda zawierająca funkcje wyświetlania listy magazynów
 
       $magazine = $magRepo->getAllMagazine();
 
@@ -25,19 +25,19 @@ class MagazineController extends Controller
     }
 
 
-    public function show(MagazineRepository $magRepo,$id){
+    public function show(MagazineRepository $magRepo,$id){ //metoda zawierająca funkcje wyświetlania szczgółów danego magazynu
 
       $magazine = $magRepo->find($id);
 
       return view('magazine.show',["magazine"=>$magazine,"title"=>"Magazyny"]);
     }
 
-    public function create(){
+    public function create(){  //metoda zawierająca funkcje wyswietlania formularza dodawnaia produktu
 
       return view('magazine.create');
     }
 
-    public function store(Request $request){
+    public function store(Request $request){  //zapisywanie danych do tabeli
 
       $magazine = new Magazine;                                                        //dodawanie Magazynu do bazy poprzez przechwycenie danych z formularza
       $magazine->name = $request->input('name');
@@ -46,20 +46,20 @@ class MagazineController extends Controller
       return redirect()->action('App\Http\Controllers\MagazineController@index');
     }
 
-    public function edit(MagazineRepository $magRepo,$id){
+    public function edit(MagazineRepository $magRepo,$id){ //edytowanie istniejących danych, wyświetlanie formularza edycji
 
       $magazine = $magRepo->find($id);
 
       return view('magazine.edit',["magazine" => $magazine]);
     }
 
-    public function delete(MagazineRepository $magRepo,$id){
+    public function delete(MagazineRepository $magRepo,$id){  //usuwanie danego magazynu z tabeli, usuwanie po "id"
 
       $magazine = $magRepo->delete($id);
       return redirect('magazine');
     }
 
-    public function editStore(Request $request){
+    public function editStore(Request $request){  //zapisywanie edytowanych danych
 
       $magazine = Magazine::find($request->input('id'));
       $magazine->name = $request->input('name');

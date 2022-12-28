@@ -15,7 +15,7 @@ class Product extends Model
         'stock'
     ];
 
-    public function magazine(){
+    public function magazine(){  //metoda zawierająca określenie relacji pomiedzy tabelami
       return $this->belongsToMany(Magazine::class,'product_magazine');
     }
 

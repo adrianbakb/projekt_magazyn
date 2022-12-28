@@ -13,7 +13,7 @@ class CreateMagazinesTable extends Migration
      */
     public function up()
     {
-        Schema::create('magazines', function (Blueprint $table) {
+        Schema::create('magazines', function (Blueprint $table) {               //stworzenie tabeli 
             $table->increments("id");
             $table->string('name');
             $table->timestamps();

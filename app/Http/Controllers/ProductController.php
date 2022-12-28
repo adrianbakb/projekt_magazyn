@@ -16,7 +16,7 @@ class ProductController extends Controller
       $this->middleware('auth');
     }
 
-    public function index(ProductRepository $prodRepo){
+    public function index(ProductRepository $prodRepo){ //metoda zawierająca funkcje wyświetlania listy produktów
 
       $product = $prodRepo->getAllProduct();
 
@@ -35,26 +35,26 @@ class ProductController extends Controller
 
     }
 
-    public function show(ProductRepository $prodRepo,$id){
+    public function show(ProductRepository $prodRepo,$id){ //metoda zawierająca funkcje wyświetlania szczgółów danego produktu
 
       $product = $prodRepo->find($id);
 
       return view('product.show');
     }
 
-    public function create(){
+    public function create(){     //metoda zawierająca funkcje wyswietlania formularza dodawnaia produktu
 
       /*if(Auth::user()->type != 'admin')
       {
         return redirect()->route('login');
       }*/
 
-      $magazine = Magazine::All();
+      $magazine = Magazine::All();      // zmienna $magazine pobierająca dane z tabeli "Magazine"
 
       return view('product.create', ["magazine" => $magazine]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request){ //zapisywanie danych do tabeli
 
       $request->validate([                                                      //walidacja danych wprowadzonych do formularza
         'name' => 'required|max:255',  //pole wymagane max 255 znaków
@@ -72,7 +72,7 @@ class ProductController extends Controller
       return redirect()->action('App\Http\Controllers\ProductController@index');
     }
 
-    public function edit(ProductRepository $prodRepo,$id){
+    public function edit(ProductRepository $prodRepo,$id){ //edytowanie istniejących danych, wyświetlanie formularza edycji
 
       $magazine = Magazine::All();
       $product = $prodRepo->find($id);
@@ -80,13 +80,13 @@ class ProductController extends Controller
       return view('product.edit',["magazine" => $magazine, "product" => $product]);
     }
 
-    public function delete(ProductRepository $prodRepo,$id){
+    public function delete(ProductRepository $prodRepo,$id){  //usuwanie danego magazynu z tabeli, usuwanie po "id"
 
       $product = $prodRepo->delete($id);
       return redirect('product');
     }
 
-    public function editStore(Request $request){
+    public function editStore(Request $request){ //zapisywanie edytowanych danych
 
       $product = Product::find($request->input('id'));
       $product->name = $request->input('name');

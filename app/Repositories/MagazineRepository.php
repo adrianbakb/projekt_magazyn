@@ -12,7 +12,7 @@ class MagazineRepository extends BaseRepository{
 
     $this->model = $model;
   }
-  public function getAllMagazine(){
+  public function getAllMagazine(){   //funkcja pobierająca wszystkie rekodry tabeli
     return DB::table('magazines')->get();
   }
 

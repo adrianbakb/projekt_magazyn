@@ -13,15 +13,15 @@ class ProductRepository extends BaseRepository{
 
     $this->model = $model;
   }
-  public function getAllProduct(){
+  public function getAllProduct(){  //funkcja pobierająca wszystkie rekodry tabeli
     return $this->model->get();
   }
 
-  public function getAllMagazine(){
+  public function getAllMagazine(){  //funkcja pobierająca wszystkie rekodry tabeli
     return DB::table('magazines')->get();
   }
 
-  public function getProductByMagazine($id){
+  public function getProductByMagazine($id){  //funkcja pobierająca "id" magazynu, w celu przypisania produktu do odpowiedniego magazynu
 
     return $this->model->where('magazine',function($q) use ($id){
 

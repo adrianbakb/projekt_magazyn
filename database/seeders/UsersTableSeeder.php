@@ -14,7 +14,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        DB::table('users')->insert([                                             //dodanie pierwszego użytkownika z uprawnieniami administratora
             'name' => 'Admin',
             'email' => 'admin@admin.pl',
             'email_verified_at' => now(),

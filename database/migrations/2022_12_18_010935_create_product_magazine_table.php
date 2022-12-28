@@ -14,12 +14,12 @@ class CreateProductMagazineTable extends Migration
      public function up()
      {
        Schema::dropIfExists('product_magazine');
-         Schema::create('product_magazine', function (Blueprint $table) {
+         Schema::create('product_magazine', function (Blueprint $table) {       //stworzenie tabeli pivot
              $table->increments('id');
              $table->unsignedInteger('magazine_id')->unsigned();
              $table->unsignedBiginteger('product_id')->unsigned();
           });
-          Schema::table('product_magazine', function(Blueprint $table) {
+          Schema::table('product_magazine', function(Blueprint $table) {        //nadanie kluczy obcych
              $table->foreign('magazine_id')->references('id')->on('magazines')->onDelete('cascade');
              $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
           });

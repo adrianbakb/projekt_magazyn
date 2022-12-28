@@ -11,12 +11,12 @@ class Message extends Model
 
     protected $fillable = [
         'message',
-        'patient_id'
+        'user_id'
 
     ];
-    public function patient(){
+    public function user(){  //okreslenie realcji pomiedzy tabelami
 
-      return $this->belongsTo(User::class,'patient_id');
+      return $this->belongsTo(User::class,'id');
     }
 
 }
