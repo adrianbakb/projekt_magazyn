@@ -40,16 +40,59 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('/magazine/delete/{id}', 'App\Http\Controllers\MagazineController@delete');
 });
 
+//routes dla funkcji Kontrahenci
+Route::group(['middleware' => 'auth'], function () {
+  Route::get('/client/edit/{id}','App\Http\Controllers\ClientController@edit');
+  Route::post('/client/edit/','App\Http\Controllers\ClientController@editStore');
+  Route::get('/client/create','App\Http\Controllers\ClientController@create');
+  Route::post('/client','App\Http\Controllers\ClientController@store');
+  Route::get('/client/', 'App\Http\Controllers\ClientController@index');
+  Route::get('/client/{id}', 'App\Http\Controllers\ClientController@show');
+  Route::get('/client/delete/{id}', 'App\Http\Controllers\ClientController@delete');
+});
+
+//routes dla funkcji Przyjęcia
+Route::group(['middleware' => 'auth'], function () {
+  Route::get('/order/edit/{id}','App\Http\Controllers\OrderController@edit');
+  Route::post('/order/edit/','App\Http\Controllers\OrderController@editStore');
+  Route::get('/order/create','App\Http\Controllers\OrderController@create');
+  Route::post('/order','App\Http\Controllers\OrderController@store');
+  Route::get('/order/', 'App\Http\Controllers\OrderController@index');
+  Route::get('/order/{id}', 'App\Http\Controllers\OrderController@report');
+  Route::get('pdf', 'App\Http\Controllers\OrderController@pdf');
+  Route::get('/order/delete/{id}', 'App\Http\Controllers\OrderController@delete');
+});
+
+//routes dla funkcji Wydania
+Route::group(['middleware' => 'auth'], function () {
+  Route::get('/issue/edit/{id}','App\Http\Controllers\IssueController@edit');
+  Route::post('/issue/edit/','App\Http\Controllers\IssueController@editStore');
+  Route::get('/issue/create','App\Http\Controllers\IssueController@create');
+  Route::post('/issue','App\Http\Controllers\IssueController@store');
+  Route::get('/issue/', 'App\Http\Controllers\IssueController@index');
+  Route::get('/issue/{id}', 'App\Http\Controllers\IssueController@report');
+  Route::get('/issue/delete/{id}', 'App\Http\Controllers\IssueController@delete');
+});
+//routes documents
+Route::group(['middleware' => 'auth'], function () {
+  Route::get('/documents/','App\Http\Controllers\DocumentsController@index');
+  Route::get('/documents/listPZ','App\Http\Controllers\DocumentsController@indexPZ');
+  Route::get('/documents/listWZ','App\Http\Controllers\DocumentsController@indexWZ');
+});
+
+//routes usermanagment
+Route::group(['middleware' => 'auth'], function () {
+  Route::get('/users/','App\Http\Controllers\UserManagment@index');
+  Route::get('/users/edit/{id}','App\Http\Controllers\UserManagment@edit');
+  Route::post('/users/edit/','App\Http\Controllers\UserManagment@editStore');
+  Route::get('/users/create','App\Http\Controllers\UserManagment@create');
+  Route::post('/users','App\Http\Controllers\UserManagment@store');
+  Route::get('/users/delete/{id}', 'App\Http\Controllers\UserManagment@delete');
+});
+
 //routes login
 Route::post('/login', 'App\Http\Controllers\Auth\LoginController@login')->name('login');
 
 Route::group(['middleware' => 'auth'], function () {
   Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
-});
-//routes panel uzytkownika
-Route::group(['middleware' => 'auth'], function () {
-	Route::resource('/user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
-	Route::get('/profile/edit', 'App\Http\Controllers\ProfileController@edit');
-	Route::put('/profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
-	Route::put('/profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 });

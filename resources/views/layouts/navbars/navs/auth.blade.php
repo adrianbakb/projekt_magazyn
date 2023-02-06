@@ -37,8 +37,12 @@
             </p>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="{{ URL::to('magazine') }}">{{ __('Magazyny') }}</a>
             <a class="dropdown-item" href="{{ URL::to('product') }}">{{ __('Produkty') }}</a>
+            <a class="dropdown-item" href="{{ URL::to('magazine') }}">{{ __('Magazyny') }}</a>
+            <a class="dropdown-item" href="{{ URL::to('client') }}">{{ __('Kontrahenci') }}</a>
+            <a class="dropdown-item" href="{{ URL::to('order') }}">{{ __('Przyjęcia') }}</a>
+            <a class="dropdown-item" href="{{ URL::to('issue') }}">{{ __('Wydania') }}</a>
+            <a class="dropdown-item" href="{{ URL::to('documents') }}">{{ __('Archiwum PZ/WZ') }}</a>
           </div>
         </li>
         <li class="nav-item dropdown">

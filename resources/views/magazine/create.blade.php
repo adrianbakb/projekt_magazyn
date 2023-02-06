@@ -26,11 +26,15 @@
         <h3 class="card-title">Dodaj magazyn</h3>
       </div>
         <a class="nav-link" href="{{ URL::to('magazine') }}">
-          <i class="material-icons">arrow_back_ios</i>Wróć
+          <i class="material-icons">navigate_before</i>Wróć
         </a>
       <div class="card-body table-responsive">
         <form action="{{ action('App\Http\Controllers\MagazineController@store') }}" method="POST" role="form">
           <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+            <div class="form-group">
+              <label for="code">Kod magazynu</label>
+              <input type="text" class="form-control" name="code" />
+            </div>
             <div class="form-group">
               <label for="name">Nazwa magazynu</label>
               <input type="text" class="form-control" name="name" />

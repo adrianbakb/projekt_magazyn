@@ -16,7 +16,7 @@
         <h4 class="card-title">{{ $magazine->name }}</h4>
       </div>
         <a class="nav-link" href="{{ URL::to('magazine') }}">
-          <i class="material-icons">arrow_back_ios</i>Wróć
+          <i class="material-icons">navigate_before</i>Wróć
         </a>
       <div class="card-body table-responsive">
         <table class="table">

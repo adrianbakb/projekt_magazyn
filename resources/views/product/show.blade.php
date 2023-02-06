@@ -11,12 +11,12 @@
     <div class="card">
       <div class="card-header card-header-info">
         <div class="card-icon">
-          <i class="material-icons">medication</i>
+          <i class="material-icons">precision_manufacturing</i>
         </div>
         <h4 class="card-title">{{ $product->name }}</h4>
       </div>
         <a class="nav-link" href="{{ URL::to('products') }}">
-          <i class="material-icons">arrow_back_ios</i>Wróć
+          <i class="material-icons">navigate_before</i>Wróć
         </a>
       <div class="card-body table-responsive">
         <table class="table">

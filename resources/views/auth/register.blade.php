@@ -83,7 +83,26 @@
                   <strong>{{ $errors->first('password_confirmation') }}</strong>
                 </div>
               @endif
+            </div><br>
+            <span>Rola w firmie:</span>
+            <div class="form-check mr-auto ml-3 mt-3">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" name="type" value="magazyn" >
+                <span class="form-check-sign">
+                  <span class="check"></span>
+                </span>
+                Magazynier
+              </label>
             </div>
+            <div class="form-check mr-auto ml-3 mt-3">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" name="type" value="biuro">
+                <span class="form-check-sign">
+                  <span class="check"></span>
+                </span>
+                Pracownik biurowy
+              </label>
+            </div><br>
             <div class="form-check mr-auto ml-3 mt-3">
               <label class="form-check-label">
                 <input class="form-check-input" type="checkbox" id="policy" name="policy" {{ old('policy', 1) ? 'checked' : '' }} >
@@ -93,7 +112,6 @@
                 {{ __('Wyrażam zgodę na ') }} <a href="#">{{ __('Polityka Prywatności') }}</a>
               </label>
             </div>
-            <input type="hidden" name="type" value="local" />
           </div>
           <div class="card-footer justify-content-center">
             <button type="submit" class="btn btn-primary btn-link btn-lg">{{ __('Utwórz konto') }}</button>

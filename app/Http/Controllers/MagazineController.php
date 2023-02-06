@@ -18,6 +18,11 @@ class MagazineController extends Controller
 
       $magazine = $magRepo->getAllMagazine();
 
+      if(Auth::user()->type != 'biuro' && Auth::user()->type != 'admin')
+      {
+        return view('magazine.listauthmag',['magazineList'=>$magazine]);
+      }
+
       return view('magazine.list',["magazineList"=>$magazine,
                                   "footerYear"=>date("Y"),
                                   "title"=>"Magazyny",
@@ -39,7 +44,8 @@ class MagazineController extends Controller
 
     public function store(Request $request){  //zapisywanie danych do tabeli
 
-      $magazine = new Magazine;                                                        //dodawanie Magazynu do bazy poprzez przechwycenie danych z formularza
+      $magazine = new Magazine;
+      $magazine->code = $request->input('code');                                                 //dodawanie Magazynu do bazy poprzez przechwycenie danych z formularza
       $magazine->name = $request->input('name');
       $magazine->save();
 
@@ -62,6 +68,7 @@ class MagazineController extends Controller
     public function editStore(Request $request){  //zapisywanie edytowanych danych
 
       $magazine = Magazine::find($request->input('id'));
+      $magazine->code = $request->input('code');
       $magazine->name = $request->input('name');
       $magazine->save();
 

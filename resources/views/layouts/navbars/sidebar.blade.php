@@ -39,19 +39,49 @@
                 <span class="sidebar-normal"> {{ __('Ustawienia') }} </span>
               </a>
             </li>
+            <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ URL::to('users') }}">
+                  <i class="material-icons">settings</i>
+                <span class="sidebar-normal"> {{ __('Użytkownicy') }} </span>
+              </a>
+            </li>
           </ul>
         </div>
       </li>
+      <li class="nav-item{{ $activePage == 'Produkty' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ URL::to('product') }}">
+          <i class="material-icons">pallet</i>
+          <p>{{ __('Produkty') }}</p>
+        </a>
+      </li>
       <li class="nav-item{{ $activePage == 'Magazyny' ? ' active' : '' }}">
         <a class="nav-link" href="{{ URL::to('magazine') }}">
-          <i class="material-icons">category</i>
+          <i class="material-icons">shelves</i>
           <p>{{ __('Magazyny') }}</p>
         </a>
       </li>
-      <li class="nav-item{{ $activePage == 'Produkty' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ URL::to('product') }}">
-          <i class="material-icons">category</i>
-          <p>{{ __('Produkty') }}</p>
+      <li class="nav-item{{ $activePage == 'Kontrahenci' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ URL::to('client') }}">
+          <i class="material-icons">groups</i>
+          <p>{{ __('Kontrahenci') }}</p>
+        </a>
+      </li>
+      <li class="nav-item{{ $activePage == 'Przyjęcia' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ URL::to('order') }}">
+          <i class="material-icons">bookmark_add</i>
+          <p>{{ __('Przyjęcia') }}</p>
+        </a>
+      </li>
+      <li class="nav-item{{ $activePage == 'Wydania' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ URL::to('issue') }}">
+          <i class="material-icons">bookmark_remove</i>
+          <p>{{ __('Wydania') }}</p>
+        </a>
+      </li>
+      <li class="nav-item{{ $activePage == 'Dokumenty' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ URL::to('documents') }}">
+          <i class="material-icons">description</i>
+          <p>{{ __('Archiwum PZ/WZ') }}</p>
         </a>
       </li>
       <li class="nav-item{{ $activePage == 'Wyloguj' ? ' active' : '' }}">

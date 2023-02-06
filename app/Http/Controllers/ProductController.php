@@ -7,6 +7,7 @@ use App\Models\Magazine;
 use App\Models\User;
 use App\Models\Product;
 use App\Repositories\ProductRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
@@ -20,6 +21,10 @@ class ProductController extends Controller
 
       $product = $prodRepo->getAllProduct();
 
+      if(Auth::user()->type != 'biuro' && Auth::user()->type != 'admin')
+      {
+        return view('product.listauthmag',['productList'=>$product]);
+      }
       return view('product.list',["productList"=>$product,
                                   "footerYear"=>date("Y"),
                                   "title"=>"Produkty",
@@ -28,14 +33,13 @@ class ProductController extends Controller
 
     public function listByMagazine(ProductRepository $prodRepo,$id){
 
-
       $product = $prodRepo->getProductByMagazine($id);
 
       return view('product.list',["productList"=>$product]);
 
     }
 
-    public function show(ProductRepository $prodRepo,$id){ //metoda zawierająca funkcje wyświetlania szczgółów danego produktu
+    public function show(ProductRepository $prodRepo,$id){ //metoda zawierająca funkcje wyświetlania szczegółów danego produktu
 
       $product = $prodRepo->find($id);
 
@@ -43,11 +47,6 @@ class ProductController extends Controller
     }
 
     public function create(){     //metoda zawierająca funkcje wyswietlania formularza dodawnaia produktu
-
-      /*if(Auth::user()->type != 'admin')
-      {
-        return redirect()->route('login');
-      }*/
 
       $magazine = Magazine::All();      // zmienna $magazine pobierająca dane z tabeli "Magazine"
 
@@ -62,12 +61,13 @@ class ProductController extends Controller
         'stock' => 'required'
       ]);
 
-      $product = new Product;                                                        //dodawanie lekarza do bazy poprzez przechwycenie danych z formularza
+      $product = new Product;
+      $product->code = $request->input('code');                                                        //dodawanie produktu do bazy poprzez przechwycenie danych z formularza
       $product->name = $request->input('name');
       $product->price = $request->input('price');
       $product->stock = $request->input('stock');
       $product->save();
-      $product->magazine()->sync($request->input('magazine.id'));
+      $product->magazine()->sync($request->input('magazine'));
 
       return redirect()->action('App\Http\Controllers\ProductController@index');
     }
@@ -89,6 +89,7 @@ class ProductController extends Controller
     public function editStore(Request $request){ //zapisywanie edytowanych danych
 
       $product = Product::find($request->input('id'));
+      $product->name = $request->input('code');
       $product->name = $request->input('name');
       $product->price = $request->input('price');
       $product->stock = $request->input('stock');

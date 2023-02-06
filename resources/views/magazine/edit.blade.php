@@ -16,17 +16,21 @@
         <h3 class="card-title">Edycja dodanego magazynu</h3>
       </div>
       <a class="nav-link" href="{{ URL::to('magazine') }}">
-        <i class="material-icons">arrow_back_ios</i>Wróć
+        <i class="material-icons">navigate_before</i>Wróć
       </a>
       <div class="card-body table-responsive">
         <form action="{{ action('App\Http\Controllers\MagazineController@editStore') }}" method="POST" role="form">
           <input type="hidden" name="_token" value="{{ csrf_token() }}" />
           <input type="hidden" name="id" value="{{ $magazine->id }}" />
           <div class="form-group">
+            <label for="name">Kod magazynu</label>
+            <input type="text" class="form-control" name="code" value="{{ $magazine->code }}" />
+          </div>
+          <div class="form-group">
             <label for="name">Nazwa magazynu</label>
             <input type="text" class="form-control" name="name" value="{{ $magazine->name }}" />
           </div>
-          <input type="submit" value="Edytuj" class="btn btn-primary"/>
+          <input type="submit" value="Edytuj" class="btn btn-primary" onclick="return confirm('Czy na pewno chcesz zapisać zmiany?')"/>
         </form>
       </div>
     </div>

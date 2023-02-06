@@ -12,19 +12,24 @@
       <div class="card card-stats">
         <div class="card-header card-header-info text-center">
           <div class="card-icon">
-            <i class="material-icons">precision_manufacturing</i>
+            <i class="material-icons">pallet</i>
           </div>
           <h3 class="card-title">Produkty</h3>
         </div>
+        <a class="nav-link" href="{{ URL::to('home') }}">
+          <i class="material-icons">navigate_before</i><b>Wróć</b>
+        </a>
         <div class="card-body table-responsive text-center">
           <table class="table table-hover">
             <thead>
               <tr>
                 <th >#</th>
+                <th >Kod produktu</th>
                 <th >Nazwa</th>
-                <th >Cena</th>
+                <th >Cena za szt.</th>
                 <th >Ilość</th>
                 <th >Magazyn</th>
+                <th >Dodane przez:</th>
                 <th >Zarządzaj</th>
               </tr>
             </thead>
@@ -32,16 +37,18 @@
               @foreach ($productList as $product)
               <tr>
                 <th scope="row">{{ $product->id }}</th>
-                  <td>{{ $product->name }}</td>
+                  <td>{{ $product->code }} </td>
+                  <td><a href="{{ URL::to('product/' .$product->id)}}"> {{ $product->name }}</a> </td>
                   <td>{{ $product->price }} PLN</td>
                   <td>{{ $product->stock }} szt.</td>
                   <td>
                     <ul class="list-group list-group-flush">
                       @foreach($product->magazine as $magazine)
-                      <li class="list-group-item">{{$magazine->name}}</li>
+                      <li class="list-group-item">{{$magazine->name}} (kod magazynu: {{$magazine->code}})</li>
                       @endforeach
                     </ul>
                   </td>
+                  <td>uzytkownik</td>
                   <td><a href="{{ URL::to('product/delete/' . $product->id ) }}" onclick="return confirm('Czy na pewno chcesz usunąć?')">Usuń produkt</a><br>
                     <a href="{{ URL::to('product/edit/' . $product->id ) }}" >Edytuj dodany produkt</a></td>
               </tr>

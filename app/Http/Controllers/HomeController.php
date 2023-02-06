@@ -17,7 +17,9 @@ class HomeController extends Controller
     }
     public function index()
     {
-        return view('dashboard');
+
+        return view('dashboard',[ "footerYear"=>date("Y"),
+                                  "title"=>"Strona główna",]);
     }
     /**
      * Show the application dashboard.
